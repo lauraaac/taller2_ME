@@ -1,8 +1,5 @@
-/* Definicion de constantes */
+#include "lcgrand.h"
 
-#define MODLUS 2147483647
-#define MULT1       24112
-#define MULT2       26143
 
 /* Semillas para los primeros 100 numeros */
 
