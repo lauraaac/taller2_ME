@@ -37,7 +37,7 @@ int main(void)  /* Funcion Principal */
 
     parametros  = fopen("param.txt",  "r");
 
-    resultados = fopen("result.txt", "w");
+    resultados = fopen("result.txt", "a");
 
     /* Especifica el numero de eventos para la funcion controltiempo. */
 
