@@ -26,16 +26,13 @@ float area_num_entra_cola,
     total_de_esperas;
 
 
-FILE  *parametros,
-      *resultados;
+FILE *resultados;
 
 using namespace std;
 
-int main(void)  /* Funcion Principal */
+int main(int argc, char* argv[])  /* Funcion Principal */
 {
     /* Abre los archivos de entrada y salida */
-
-    parametros  = fopen("param.txt",  "r");
 
     resultados = fopen("result.txt", "a");
 
@@ -45,16 +42,17 @@ int main(void)  /* Funcion Principal */
 
     /* Lee los parametros de enrtrada. */
 
-    fscanf(parametros, "%f %f %d", &media_entre_llegadas, &media_atencion,
-           &num_esperas_requerido);
+    media_entre_llegadas = atof(argv[1]);
+    media_atencion = atof(argv[2]);
+    num_esperas_requerido = atoi(argv[3]);
 
     /* Escribe en el archivo de salida los encabezados del reporte y los parametros iniciales */
-
-    fprintf(resultados, "Sistema de Colas Simple\n\n");
-    fprintf(resultados, "Tiempo promedio de llegada%11.3f minutos\n\n",
+    fprintf(resultados, "------------\n");
+    fprintf(resultados, "Sistema de Colas Simple\n");
+    fprintf(resultados, "Tiempo promedio de llegada%11.3f minutos\n",
             media_entre_llegadas);
-    fprintf(resultados, "Tiempo promedio de atencion%16.3f minutos\n\n", media_atencion);
-    fprintf(resultados, "Numero de clientes%14d\n\n", num_esperas_requerido);
+    fprintf(resultados, "Tiempo promedio de atencion%16.3f minutos\n", media_atencion);
+    fprintf(resultados, "Numero de clientes%14d\n", num_esperas_requerido);
 
     /* iInicializa la simulacion. */
 
@@ -88,7 +86,6 @@ int main(void)  /* Funcion Principal */
 
     reportes();
 
-    fclose(parametros);
     fclose(resultados);
 
     return 0;
@@ -249,13 +246,13 @@ void salida(void)  /* Funcion de Salida. */
 void reportes(void)  /* Funcion generadora de reportes. */
 {
     /* Calcula y estima los estimados de las medidas deseadas de desempe�o */  
-    fprintf(resultados, "\n\nEspera promedio en la cola%11.3f minutos\n\n",
+    fprintf(resultados, "\nEspera promedio en la cola%11.3f minutos\n",
             total_de_esperas / num_clientes_espera);
-    fprintf(resultados, "Numero promedio en cola%10.3f\n\n",
+    fprintf(resultados, "Numero promedio en cola%10.3f\n",
             area_num_entra_cola / tiempo_simulacion);
-    fprintf(resultados, "Uso del servidor%15.3f\n\n",
+    fprintf(resultados, "Uso del servidor%15.3f\n",
             area_estado_servidor / tiempo_simulacion);
-    fprintf(resultados, "Tiempo de terminacion de la simulacion%12.3f minutos", tiempo_simulacion);
+    fprintf(resultados, "Tiempo de terminacion de la simulacion%12.3f minutos \n", tiempo_simulacion);
 }
 
 
