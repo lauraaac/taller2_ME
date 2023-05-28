@@ -9,7 +9,7 @@ Los que vieron modelos con Astaiza sabrán que este fue un código que realizamo
   * Para usar Makefile en Mac, instalar brew con el comando `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` y luego ejecutar el comando `brew install make`
 * Ejecute con **./programa.out param1 param2 param3** donde estos parametros son **media_entre_llegadas**, **media_atencion** y **num_esperas_requerido** respectivamente. 
 
-* El programa requiere **param1 param2 y param3** como parametros del **programa.out** como entrada y genera **_result.txt_**
+* El programa requiere **param1 param2 y param3** como parametros del **programa.out** como entrada, genera **_result.txt_** y **_result.csv_** como salidas.
 
 ### Uso de script de python
 

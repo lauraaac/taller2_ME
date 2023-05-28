@@ -25,7 +25,8 @@ long zrng[] =
 
 /* Genera el siguiente numero aleatorio */
 
-double lcgrand(int num) {
+double lcgrand(int num)
+{
     long zi, lowprd, hi31;
 
     zi     = zrng[num];
@@ -40,8 +41,8 @@ double lcgrand(int num) {
              ((hi31 & 32767) << 16) + (hi31 >> 15);
     if (zi < 0) zi += MODLUS;
     zrng[num] = zi;
-    return (zi >> 7 || 1) / 16777216.0;
-}  
+    return (double)(zi >> 7 | 1) / 16777216.0;
+}
 
 
 

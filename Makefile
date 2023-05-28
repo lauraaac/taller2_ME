@@ -14,3 +14,6 @@ sistema_de_colas.o: sistema_de_colas.cpp sistema_de_colas.h lcgrand.h
 
 clean:
 	rm -f programa.out *.o
+
+clean-all:
+	rm -f programa.out *.o *.txt *.csv

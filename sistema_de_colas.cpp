@@ -26,7 +26,7 @@ float area_num_entra_cola,
     total_de_esperas;
 
 
-FILE *resultados;
+FILE *resultados_resumen, *resultados;
 
 using namespace std;
 
@@ -34,7 +34,8 @@ int main(int argc, char* argv[])  /* Funcion Principal */
 {
     /* Abre los archivos de entrada y salida */
 
-    resultados = fopen("result.txt", "a");
+    resultados_resumen = fopen("result.txt", "a");
+    resultados = fopen("result.csv", "a");
 
     /* Especifica el numero de eventos para la funcion controltiempo. */
 
@@ -47,16 +48,15 @@ int main(int argc, char* argv[])  /* Funcion Principal */
     num_esperas_requerido = atoi(argv[3]);
 
     /* Escribe en el archivo de salida los encabezados del reporte y los parametros iniciales */
-    fprintf(resultados, "------------\n");
-    fprintf(resultados, "Sistema de Colas Simple\n");
-    fprintf(resultados, "Tiempo promedio de llegada%11.3f minutos\n",
-            media_entre_llegadas);
-    fprintf(resultados, "Tiempo promedio de atencion%16.3f minutos\n", media_atencion);
-    fprintf(resultados, "Numero de clientes%14d\n", num_esperas_requerido);
+    fprintf(resultados_resumen, "------------\n");
+    fprintf(resultados_resumen, "Sistema de Colas Simple\n");
+    fprintf(resultados_resumen, "Tiempo promedio de llegada%11.8f minutos\n", media_entre_llegadas);
+    fprintf(resultados_resumen, "Tiempo promedio de atencion%16.8f minutos\n", media_atencion);
+    fprintf(resultados_resumen, "Numero de clientes%14d\n", num_esperas_requerido);
 
     /* Escribe encabezado para salida tipo csv */
 
-    fprintf(resultados, "\n\nNumero de clientes atendidos;Tiempo de simulacion;Numero de clientes en cola;Estado del servidor;Tiempo de proxima llegada;Tiempo de proxima salida;Total de esperas;Area bajo el numero en cola;Area bajo el indicador de servidor ocupado;Tiempo de ultimo evento;Tiempo desde el ultimo evento;Tiempo promedio de espera\n");
+    fprintf(resultados, "Numero de clientes atendidos;Tiempo de simulacion;Numero de clientes en cola;Estado del servidor;Tiempo de proxima llegada;Tiempo de proxima salida;Total de esperas;Area bajo el numero en cola;Area bajo el indicador de servidor ocupado;Tiempo de ultimo evento;Tiempo desde el ultimo evento;Tiempo promedio de espera\n");
 
     /* iInicializa la simulacion. */
 
@@ -65,6 +65,8 @@ int main(int argc, char* argv[])  /* Funcion Principal */
     /* Corre la simulacion mientras no se llegue al numero de clientes especificaco en el archivo de entrada*/
 
     while (num_clientes_espera < num_esperas_requerido) {
+        /*Reporta para el cliente iesimo*/
+        reporte_estado();
 
         /* Determina el siguiente evento */
 
@@ -85,7 +87,6 @@ int main(int argc, char* argv[])  /* Funcion Principal */
                 break;
         }
 
-        reporte_estado();
     }
 
     /* Invoca el generador de reportes y termina la simulacion. */
@@ -93,6 +94,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
     reportes();
 
     fclose(resultados);
+    fclose(resultados_resumen);
 
     return 0;
 }
@@ -148,7 +150,7 @@ void controltiempo(void)  /* Funcion controltiempo */
 
         /* La lista de eventos esta vacia, se detiene la simulacion. */
 
-        fprintf(resultados, "\nLa lista de eventos esta vacia %f", tiempo_simulacion);
+        fprintf(resultados_resumen, "\nLa lista de eventos esta vacia %f", tiempo_simulacion);
         exit(1);
     }
 
@@ -180,8 +182,8 @@ void llegada(void)  /* Funcion de llegada */
 
             /* Se ha desbordado la cola, detiene la simulacion */
 
-            fprintf(resultados, "\nDesbordamiento del arreglo tiempo_llegada a la hora");
-            fprintf(resultados, "%f", tiempo_simulacion);
+            fprintf(resultados_resumen, "\nDesbordamiento del arreglo tiempo_llegada a la hora");
+            fprintf(resultados_resumen, "%f", tiempo_simulacion);
             exit(2);
         }
 
@@ -252,19 +254,19 @@ void salida(void)  /* Funcion de Salida. */
 void reportes(void)  /* Funcion generadora de reportes. */
 {
     /* Calcula y estima los estimados de las medidas deseadas de desempe�o */  
-    fprintf(resultados, "\nEspera promedio en la cola%11.3f minutos\n",
+    fprintf(resultados_resumen, "\nEspera promedio en la cola%11.8f minutos\n",
             total_de_esperas / num_clientes_espera);
-    fprintf(resultados, "Numero promedio en cola%10.3f\n",
+    fprintf(resultados_resumen, "Numero promedio en cola%10.8f\n",
             area_num_entra_cola / tiempo_simulacion);
-    fprintf(resultados, "Uso del servidor%15.3f\n",
+    fprintf(resultados_resumen, "Uso del servidor%15.8f\n",
             area_estado_servidor / tiempo_simulacion);
-    fprintf(resultados, "Tiempo de terminacion de la simulacion%12.3f minutos \n", tiempo_simulacion);
+    fprintf(resultados_resumen, "Tiempo de terminacion de la simulacion%12.8f minutos \n", tiempo_simulacion);
 }
 
 void reporte_estado(void) /* Reporte de cada estado. */
 {
 
-    fprintf(resultados, "%7d;%f;%11d;%16d;%12.3f;%13.3f;%18.3f;%10.3f;%5.3f;%14.3f;%11.3f;%14.3f\n", 
+    fprintf(resultados, "%7d;%f;%11d;%16d;%12.8f;%13.8f;%18.8f;%10.8f;%5.8f;%14.8f;%11.8f;%14.8f\n", 
         num_clientes_espera,
         tiempo_simulacion,
         num_entra_cola,
