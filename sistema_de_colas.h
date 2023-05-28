@@ -1,7 +1,7 @@
 /* Archivo de encabezado para el sistema de colas simple */
 
-#ifndef SISTEMA_COLAS_SIMPLE_H
-#define SISTEMA_COLAS_SIMPLE_H
+#ifndef SISTEMA_COLAS_ERLANG_H
+#define SISTEMA_COLAS_ERLANG_H
 
 #define LIMITE_COLA 100  /* Capacidad maxima de la cola */
 #define OCUPADO      1    /* Indicador de Servidor Ocupado */
@@ -16,4 +16,4 @@ void  reporte_estado(void);
 void  actualizar_estad_prom_tiempo(void);
 float expon(float mean);
 
-#endif /* SISTEMA_COLAS_SIMPLE_H */
+#endif /* SISTEMA_COLAS_ERLANG_H */

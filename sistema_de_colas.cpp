@@ -13,7 +13,8 @@ int sig_tipo_evento,
     num_esperas_requerido,
     num_eventos,
     num_entra_cola,
-    estado_servidor;
+    estado_servidor, /* Este es ahora el numero de servidores ocupados */
+    num_servidores;
 
 float area_num_entra_cola,
     area_estado_servidor,
@@ -46,6 +47,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
     media_entre_llegadas = atof(argv[1]);
     media_atencion = atof(argv[2]);
     num_esperas_requerido = atoi(argv[3]);
+    num_servidores = atoi(argv[4]);
 
     /* Escribe en el archivo de salida los encabezados del reporte y los parametros iniciales */
     fprintf(resultados_resumen, "------------\n");
@@ -56,7 +58,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
 
     /* Escribe encabezado para salida tipo csv */
 
-    fprintf(resultados, "Numero de clientes atendidos;Tiempo de simulacion;Numero de clientes en cola;Estado del servidor;Tiempo de proxima llegada;Tiempo de proxima salida;Total de esperas;Area bajo el numero en cola;Area bajo el indicador de servidor ocupado;Tiempo de ultimo evento;Tiempo desde el ultimo evento;Tiempo promedio de espera\n");
+    fprintf(resultados, "Numero de clientes atendidos;Tiempo de simulacion;Numero de clientes en cola;Estado del servidor o num clientes en servidores;Tiempo de proxima llegada;Tiempo de proxima salida;Total de esperas;Area bajo el numero en cola;Area bajo el indicador de servidor ocupado;Tiempo de ultimo evento;Tiempo desde el ultimo evento;Tiempo promedio de espera\n");
 
     /* iInicializa la simulacion. */
 
@@ -108,7 +110,7 @@ void inicializar(void)  /* Funcion de inicializacion. */
 
     /* Inicializa las variables de estado */
 
-    estado_servidor   = LIBRE;
+    estado_servidor   = 0;
     num_entra_cola        = 0;
     tiempo_ultimo_evento = 0.0;
 
@@ -168,9 +170,9 @@ void llegada(void)  /* Funcion de llegada */
 
     tiempo_sig_evento[1] = tiempo_simulacion + expon(media_entre_llegadas);
 
-    /* Reisa si el servidor esta OCUPADO. */
+    /* Revisa si el servidor esta OCUPADO. */
 
-    if (estado_servidor == OCUPADO) {
+    if (estado_servidor == num_servidores) {
 
         /* Sservidor OCUPADO, aumenta el numero de clientes en cola */
 
@@ -195,7 +197,7 @@ void llegada(void)  /* Funcion de llegada */
 
     else {
 
-        /*  El servidor esta LIBRE, por lo tanto el cliente que llega tiene tiempo de eespera=0
+        /*  El servidor esta LIBRE es decir hay menos servidores libres, por lo tanto el cliente que llega tiene tiempo de eespera=0
            (Las siguientes dos lineas del programa son para claridad, y no afectan
            el reultado de la simulacion ) */
 
@@ -204,7 +206,7 @@ void llegada(void)  /* Funcion de llegada */
 
         /* Incrementa el numero de clientes en espera, y pasa el servidor a ocupado */
         ++num_clientes_espera;
-        estado_servidor = OCUPADO;
+        estado_servidor++;
 
         /* Programa una salida ( servicio terminado ). */     
 
@@ -218,24 +220,22 @@ void salida(void)  /* Funcion de Salida. */
     int   i;
     float espera;
 
-    /* Revisa si la cola esta vacia */
+    /* Revisa si la cola esta vacia y si hay clientes en servicio*/
 
     if (num_entra_cola == 0) 
     {
-
-        /* La cola esta vacia, pasa el servidor a LIBRE y
+        /* La cola esta vacia, se disminuyen los clientes en el servidor y
         no considera el evento de salida*/     
-        estado_servidor      = LIBRE;
+        estado_servidor = (estado_servidor > 0) ? estado_servidor-1 : 0;
         tiempo_sig_evento[2] = 1.0e+30;
     }
-
     else {
 
-        /* La cola no esta vacia, disminuye el numero de clientes en cola. */
+        /* La cola no esta vacia, disminuye el numero de clientes en cola SI O SI HAY CUPO EN LOS SERVIDORES PUES ACABA SE SALIR UN CLIENTE  */
         --num_entra_cola;
 
         /*Calcula la espera del cliente que esta siendo atendido y
-        actualiza el acumulador de espera */
+        actualiza el acumulador de espera si el servidor está libre */
 
         espera = tiempo_simulacion - tiempo_llegada[1];
         total_de_esperas += espera;
