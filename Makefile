@@ -19,7 +19,7 @@ sistema_de_colas_erlang.o: sistema_de_colas_erlang.cpp sistema_de_colas_erlang.h
 	$(CC) $(CFLAGS) -c sistema_de_colas_erlang.cpp
 
 clean:
-	rm -f programa.out *.o
+	rm -f programa.out erlang.out *.o
 
 clean-all:
 	rm -f programa.out *.o *.txt *.csv
