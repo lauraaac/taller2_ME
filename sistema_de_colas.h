@@ -12,6 +12,7 @@ void  controltiempo(void);
 void  llegada(void);
 void  salida(void);
 void  reportes(void);
+void  reporte_estado(void);
 void  actualizar_estad_prom_tiempo(void);
 float expon(float mean);
 

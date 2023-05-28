@@ -54,6 +54,10 @@ int main(int argc, char* argv[])  /* Funcion Principal */
     fprintf(resultados, "Tiempo promedio de atencion%16.3f minutos\n", media_atencion);
     fprintf(resultados, "Numero de clientes%14d\n", num_esperas_requerido);
 
+    /* Escribe encabezado para salida tipo csv */
+
+    fprintf(resultados, "\n\nNumero de clientes atendidos;Tiempo de simulacion;Numero de clientes en cola;Estado del servidor;Tiempo de proxima llegada;Tiempo de proxima salida;Total de esperas;Area bajo el numero en cola;Area bajo el indicador de servidor ocupado;Tiempo de ultimo evento;Tiempo desde el ultimo evento;Tiempo promedio de espera\n");
+
     /* iInicializa la simulacion. */
 
     inicializar();
@@ -80,6 +84,8 @@ int main(int argc, char* argv[])  /* Funcion Principal */
                 salida();
                 break;
         }
+
+        reporte_estado();
     }
 
     /* Invoca el generador de reportes y termina la simulacion. */
@@ -253,6 +259,25 @@ void reportes(void)  /* Funcion generadora de reportes. */
     fprintf(resultados, "Uso del servidor%15.3f\n",
             area_estado_servidor / tiempo_simulacion);
     fprintf(resultados, "Tiempo de terminacion de la simulacion%12.3f minutos \n", tiempo_simulacion);
+}
+
+void reporte_estado(void) /* Reporte de cada estado. */
+{
+
+    fprintf(resultados, "%7d;%f;%11d;%16d;%12.3f;%13.3f;%18.3f;%10.3f;%5.3f;%14.3f;%11.3f;%14.3f\n", 
+        num_clientes_espera,
+        tiempo_simulacion,
+        num_entra_cola,
+        estado_servidor,
+        tiempo_sig_evento[1],
+        tiempo_sig_evento[2],
+        total_de_esperas,
+        area_num_entra_cola,
+        area_estado_servidor,
+        tiempo_ultimo_evento,
+        tiempo_simulacion - tiempo_ultimo_evento,
+        total_de_esperas / num_clientes_espera);
+
 }
 
 
