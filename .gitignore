@@ -6,3 +6,5 @@ a.exe
 param.csv
 result.csv
 .vscode
+sistema_de_colas_erlang.o
+erlang.out
