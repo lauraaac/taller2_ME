@@ -13,6 +13,6 @@ Los que vieron modelos con Astaiza sabrán que este fue un código que realizamo
 ### Uso de script de python
 
 * Puede usar **ejecuciones.py** para ejecutar multiples veces **programa.out**
-* El script de python requiere que esté en la misma ruta un archivo **param.csv** de tamaño _nx3_ para _n_ ejecuciones del mismo
+* El script de python requiere que esté en la misma ruta un archivo **param.csv** de tamaño _nx3_ para _n_ ejecuciones del mismo **con limitador ";"**
 * Cada una de las filas del archivo **param.csv** será una ejecución de **programa.out** las salidas se acumularán en el archivo **_result.txt_**
 
