@@ -2,3 +2,9 @@ result.txt
 lcgrand.o
 programa.out
 sistema_de_colas.o
+a.exe
+param.csv
+result.csv
+.vscode
+sistema_de_colas_erlang.o
+erlang.out
