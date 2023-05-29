@@ -1,3 +1,4 @@
+modularizacion/*.o
 result.txt
 lcgrand.o
 programa.out

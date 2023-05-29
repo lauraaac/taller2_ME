@@ -31,7 +31,7 @@ salida.o: modularizacion/salida.cpp modularizacion/salida.h
 
 
 clean:
-	rm -f programa.out erlang.out *.o
+	rm -f programa.out erlang.out *.o modularizacion/*.o
 
 clean-all:
-	rm -f programa.out *.o *.txt *.csv
+	rm -f programa.out *.o *.txt *.csv modularizacion/*.o modularizacion/*.txt modularizacion/*.csv
