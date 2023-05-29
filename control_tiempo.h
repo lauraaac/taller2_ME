@@ -7,7 +7,7 @@
 
 extern int sig_tipo_evento, num_eventos;
 extern float tiempo_sig_evento[3], tiempo_simulacion;
-extern FILE *resultados;
+extern FILE *resultados, *resultados_resumen;
 
 
 #endif

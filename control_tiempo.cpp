@@ -1,5 +1,6 @@
 #include "control_tiempo.h"
 
+
 void controltiempo(void)  /* Funcion controltiempo */
 {
     int   i;
@@ -23,7 +24,7 @@ void controltiempo(void)  /* Funcion controltiempo */
 
         /* La lista de eventos esta vacia, se detiene la simulacion. */
 
-        fprintf(resultados, "\nLa lista de eventos esta vacia %f", tiempo_simulacion);
+        fprintf(resultados_resumen, "\nLa lista de eventos esta vacia %f", tiempo_simulacion);
         exit(1);
     }
 

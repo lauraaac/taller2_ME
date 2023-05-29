@@ -8,9 +8,9 @@ void llegada(void)  /* Funcion de llegada */
 
     tiempo_sig_evento[1] = tiempo_simulacion + expon(media_entre_llegadas);
 
-    /* Reisa si el servidor esta OCUPADO. */
+    /* Revisa si el servidor esta OCUPADO. */
 
-    if (estado_servidor == OCUPADO) {
+    if (estado_servidor == num_servidores) {
 
         /* Sservidor OCUPADO, aumenta el numero de clientes en cola */
 
@@ -22,8 +22,8 @@ void llegada(void)  /* Funcion de llegada */
 
             /* Se ha desbordado la cola, detiene la simulacion */
 
-            fprintf(resultados, "\nDesbordamiento del arreglo tiempo_llegada a la hora");
-            fprintf(resultados, "%f", tiempo_simulacion);
+            fprintf(resultados_resumen, "\nDesbordamiento del arreglo tiempo_llegada a la hora");
+            fprintf(resultados_resumen, "%f", tiempo_simulacion);
             exit(2);
         }
 
@@ -35,7 +35,7 @@ void llegada(void)  /* Funcion de llegada */
 
     else {
 
-        /*  El servidor esta LIBRE, por lo tanto el cliente que llega tiene tiempo de eespera=0
+        /*  El servidor esta LIBRE es decir hay menos servidores libres, por lo tanto el cliente que llega tiene tiempo de eespera=0
            (Las siguientes dos lineas del programa son para claridad, y no afectan
            el reultado de la simulacion ) */
 
@@ -44,7 +44,7 @@ void llegada(void)  /* Funcion de llegada */
 
         /* Incrementa el numero de clientes en espera, y pasa el servidor a ocupado */
         ++num_clientes_espera;
-        estado_servidor = OCUPADO;
+        estado_servidor++;
 
         /* Programa una salida ( servicio terminado ). */     
 

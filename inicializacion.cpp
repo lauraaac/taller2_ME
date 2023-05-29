@@ -8,7 +8,7 @@ void inicializar(void)  /* Funcion de inicializacion. */
 
     /* Inicializa las variables de estado */
 
-    estado_servidor   = LIBRE;
+    estado_servidor   = 0;
     num_entra_cola        = 0;
     tiempo_ultimo_evento = 0.0;
 

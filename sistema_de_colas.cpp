@@ -14,6 +14,27 @@
 #include "salida.h"
 
 
+int sig_tipo_evento,
+    num_clientes_espera,
+    num_esperas_requerido,
+    num_eventos,
+    num_entra_cola,
+    estado_servidor, /* Este es ahora el numero de servidores ocupados */
+    num_servidores;
+
+float area_num_entra_cola,
+    area_estado_servidor,
+    media_entre_llegadas,
+    media_atencion,
+    tiempo_simulacion,
+    tiempo_llegada[LIMITE_COLA + 1],
+    tiempo_ultimo_evento,
+    tiempo_sig_evento[3],
+    total_de_esperas;
+
+
+FILE *resultados_resumen, *resultados;
+
 using namespace std;
 
 int main(int argc, char* argv[])  /* Funcion Principal */
@@ -104,6 +125,9 @@ void reporte_estado(void) /* Reporte de cada estado. */
         total_de_esperas / num_clientes_espera);
 
 }
+
+
+
 
 
 float expon(float media)  /* Funcion generadora de la exponencias */

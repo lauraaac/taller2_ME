@@ -7,6 +7,7 @@
 #define OCUPADO      1    /* Indicador de Servidor Ocupado */
 #define LIBRE        0    /* Indicador de Servidor Libre */
 
+
 void  inicializar(void);
 void  controltiempo(void);
 void  llegada(void);
