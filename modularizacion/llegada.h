@@ -2,7 +2,7 @@
 
 #define LLEGADA_H
 
-#include "sistema_de_colas.h"
+#include "../sistema_de_colas.h"
 #include <stdio.h>
 #include "stdlib.h"
 

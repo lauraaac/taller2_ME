@@ -4,14 +4,14 @@
 #include <stdlib.h>
 #include <math.h>
 #include <iostream>
-#include "lcgrand.h"
+#include "modularizacion/lcgrand.h"
 #include "sistema_de_colas.h"
-#include "inicializacion.h"
-#include "control_tiempo.h"
-#include "actualizar_estad_prom_tiempo.h"
-#include "reportes.h"
-#include "llegada.h"
-#include "salida.h"
+#include "modularizacion/inicializacion.h"
+#include "modularizacion/control_tiempo.h"
+#include "modularizacion/actualizar_estad_prom_tiempo.h"
+#include "modularizacion/reportes.h"
+#include "modularizacion/llegada.h"
+#include "modularizacion/salida.h"
 
 
 int sig_tipo_evento,
@@ -125,10 +125,6 @@ void reporte_estado(void) /* Reporte de cada estado. */
         total_de_esperas / num_clientes_espera);
 
 }
-
-
-
-
 
 float expon(float media)  /* Funcion generadora de la exponencias */
 {

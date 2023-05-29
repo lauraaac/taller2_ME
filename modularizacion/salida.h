@@ -3,7 +3,7 @@
 
 #define SALIDA_H
 
-#include "sistema_de_colas.h"
+#include "../sistema_de_colas.h"
 
 extern int num_entra_cola, estado_servidor, num_clientes_espera;
 
