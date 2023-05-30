@@ -6,17 +6,18 @@
 #include <stdio.h>
 #include "stdlib.h"
 
-extern FILE *resultados, *resultados_resumen;
-
-extern int estado_servidor,
-           num_entra_cola,
-           num_clientes_espera,
-           num_servidores;
-           
-extern float tiempo_sig_evento[3], 
-             tiempo_simulacion,
-             media_entre_llegadas,
-             tiempo_llegada[LIMITE_COLA + 1],
-             total_de_esperas, media_atencion;
+void llegada(
+    float * tiempo_sig_evento,
+    float & tiempo_simulacion,
+    float & media_entre_llegadas,
+    int & estado_servidor,
+    int & num_servidores,
+    int & num_entra_cola,
+    FILE * resultados_resumen,
+    float * tiempo_llegada,
+    float & total_de_esperas,
+    int & num_clientes_espera,
+    float & media_atencion
+    );  /* Funcion de llegada */
 
 #endif

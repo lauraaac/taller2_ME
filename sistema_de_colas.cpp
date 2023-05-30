@@ -12,6 +12,7 @@
 #include "modularizacion/reportes.h"
 #include "modularizacion/llegada.h"
 #include "modularizacion/salida.h"
+#include "modularizacion/expon.h"
 
 
 int sig_tipo_evento,
@@ -68,7 +69,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
 
     /* iInicializa la simulacion. */
 
-    inicializar();
+    inicializar(tiempo_simulacion, estado_servidor, num_entra_cola, tiempo_ultimo_evento, num_clientes_espera, total_de_esperas, area_num_entra_cola, area_estado_servidor, tiempo_sig_evento, media_entre_llegadas);
 
     /* Corre la simulacion mientras no se llegue al numero de clientes especificaco en el archivo de entrada*/
 
@@ -78,20 +79,20 @@ int main(int argc, char* argv[])  /* Funcion Principal */
 
         /* Determina el siguiente evento */
 
-        controltiempo();
+        controltiempo(resultados_resumen, tiempo_simulacion, sig_tipo_evento, num_eventos, tiempo_sig_evento);
 
         /* Actualiza los acumuladores estadisticos de tiempo promedio */
 
-        actualizar_estad_prom_tiempo();
+        actualizar_estad_prom_tiempo(tiempo_simulacion, tiempo_ultimo_evento, area_num_entra_cola, num_entra_cola, area_estado_servidor, estado_servidor);
 
         /* Invoca la funcion del evento adecuado. */
 
         switch (sig_tipo_evento) {
             case 1:
-                llegada();
+                llegada(tiempo_sig_evento, tiempo_simulacion, media_entre_llegadas, estado_servidor, num_servidores, num_entra_cola, resultados_resumen, tiempo_llegada, total_de_esperas, num_clientes_espera, media_atencion);
                 break;
             case 2:
-                salida();
+                salida(tiempo_sig_evento, tiempo_simulacion, media_atencion, num_entra_cola, num_clientes_espera, total_de_esperas, estado_servidor, tiempo_llegada);
                 break;
         }
 
@@ -99,7 +100,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
 
     /* Invoca el generador de reportes y termina la simulacion. */
 
-    reportes();
+    reportes(resultados_resumen, total_de_esperas, area_num_entra_cola, tiempo_simulacion, area_estado_servidor, num_clientes_espera);
 
     fclose(resultados);
     fclose(resultados_resumen);
@@ -124,11 +125,4 @@ void reporte_estado(void) /* Reporte de cada estado. */
         tiempo_simulacion - tiempo_ultimo_evento,
         total_de_esperas / num_clientes_espera);
 
-}
-
-float expon(float media)  /* Funcion generadora de la exponencias */
-{
-    /* Retorna una variable aleatoria exponencial con media "media"*/
-
-    return -media * log(lcgrand(1));
 }

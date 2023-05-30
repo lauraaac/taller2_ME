@@ -1,7 +1,12 @@
 #include "actualizar_estad_prom_tiempo.h"
 
-void actualizar_estad_prom_tiempo(void)  /* Actualiza los acumuladores de
-														area para las estadisticas de tiempo promedio. */
+void actualizar_estad_prom_tiempo(
+    float &tiempo_simulacion, 
+    float &tiempo_ultimo_evento, 
+    float & area_num_entra_cola, 
+    int & num_entra_cola, 
+    float & area_estado_servidor, 
+    int & estado_servidor)  /* Actualiza los acumuladores de area para las estadisticas de tiempo promedio. */
 {
     float time_since_last_event;
 

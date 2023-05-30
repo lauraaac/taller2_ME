@@ -2,9 +2,12 @@
 
 #define ACTUALIZAR_ESTAD_PROM_TIEMPO_H
 
-
-extern int num_entra_cola, estado_servidor;
-extern float tiempo_simulacion, tiempo_ultimo_evento, area_num_entra_cola, area_estado_servidor;
-
+void actualizar_estad_prom_tiempo(
+    float &tiempo_simulacion,
+    float &tiempo_ultimo_evento,
+    float &area_num_entra_cola,
+    int &num_entra_cola,
+    float &area_estado_servidor,
+    int &estado_servidor);
 
 #endif

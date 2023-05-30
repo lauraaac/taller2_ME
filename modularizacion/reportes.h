@@ -6,8 +6,13 @@
 #include <stdio.h>
 #include "../sistema_de_colas.h"
 
-extern FILE *resultados, *resultados_resumen;
-extern float total_de_esperas, area_num_entra_cola, tiempo_simulacion, area_estado_servidor;
-extern int num_clientes_espera;
+void reportes(
+        FILE *resultados_resumen,
+        float & total_de_esperas,
+        float & area_num_entra_cola,
+        float & tiempo_simulacion,
+        float & area_estado_servidor,
+        int & num_clientes_espera
+        );
 
 #endif

@@ -3,9 +3,16 @@
 #define INICIALIZACION_H
 
 
-extern float tiempo_simulacion, tiempo_ultimo_evento,total_de_esperas, area_num_entra_cola, area_estado_servidor, tiempo_sig_evento[3], media_entre_llegadas; 
-extern int estado_servidor, num_entra_cola, num_clientes_espera;
-
-float expon(float mean);
+void inicializar(
+    float & tiempo_simulacion, 
+    int & estado_servidor, 
+    int & num_entra_cola, 
+    float & tiempo_ultimo_evento,
+    int & num_clientes_espera,
+    float & total_de_esperas,
+    float & area_num_entra_cola,
+    float & area_estado_servidor,
+    float * tiempo_sig_evento,
+    float & media_entre_llegadas);
 
 #endif 

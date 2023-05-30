@@ -1,5 +1,13 @@
 #include "reportes.h"
-void reportes(void)  /* Funcion generadora de reportes. */
+
+void reportes(
+        FILE *resultados_resumen,
+        float & total_de_esperas,
+        float & area_num_entra_cola,
+        float & tiempo_simulacion,
+        float & area_estado_servidor,
+        int & num_clientes_espera
+        )  /* Funcion generadora de reportes. */
 {
     /* Calcula y estima los estimados de las medidas deseadas de desempe�o */  
     fprintf(resultados_resumen, "\nEspera promedio en la cola%11.8f minutos\n",

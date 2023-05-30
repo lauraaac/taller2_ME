@@ -5,9 +5,6 @@
 #include "stdlib.h"
 #include <stdio.h>
 
-extern int sig_tipo_evento, num_eventos;
-extern float tiempo_sig_evento[3], tiempo_simulacion;
-extern FILE *resultados, *resultados_resumen;
-
+void controltiempo(FILE * resultados_resumen,float &tiempo_simulacion, int &sig_tipo_evento, int &num_eventos, float *tiempo_sig_evento);  /* Funcion de control de tiempo */
 
 #endif
