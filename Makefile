@@ -6,7 +6,7 @@ BINDIR = bin
 
 SOURCES = $(wildcard $(SRCDIR)/*.cpp) sistema_de_colas.cpp
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
-TARGET = $(BINDIR)/programa.out
+TARGET = $(BINDIR)/programa.exe
 
 .PHONY: all clean clean-all
 
@@ -19,10 +19,10 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BINDIR) $(OBJDIR):
-	mkdir -p $@
+	mkdir $(subst /,\,$@)
 
 clean:
-	rm -rf $(BINDIR) $(OBJDIR) erlang.out
+	rmdir /s /q $(BINDIR) $(OBJDIR) erlang.out
 
 clean-all: clean
-	rm -f *.txt *.csv
+	rm /obj/ /bin/ *.txt *.csv
