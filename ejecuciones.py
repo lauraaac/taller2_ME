@@ -10,7 +10,7 @@ except subprocess.CalledProcessError as e:
     print("Error al ejecutar make:", e)
 
 # Ruta al ejecutable de C++
-ejecutable = "./programa.out"
+ejecutable = "./bin/programa.exe"
 
 # Ruta al archivo CSV
 archivo_csv = "param.csv"
