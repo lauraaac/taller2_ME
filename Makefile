@@ -22,7 +22,7 @@ $(BINDIR) $(OBJDIR):
 	mkdir $(subst /,\,$@)
 
 clean:
-	rmdir /s /q $(BINDIR) $(OBJDIR) erlang.out
+	rm $(BINDIR) $(OBJDIR)
 
-clean-all: clean
-	rm /obj/ /bin/ *.txt *.csv
+clean-linux:
+	rm -rfd $(BINDIR) $(OBJDIR)
