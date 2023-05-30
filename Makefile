@@ -22,7 +22,7 @@ $(BINDIR) $(OBJDIR):
 	mkdir $(subst /,\,$@)
 
 clean:
-	rm $(BINDIR) $(OBJDIR)
+	rmdir /s /q $(BINDIR) $(OBJDIR)
 
 clean-linux:
 	rm -rfd $(BINDIR) $(OBJDIR)
