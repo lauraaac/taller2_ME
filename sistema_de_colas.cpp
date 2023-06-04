@@ -102,7 +102,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
 
     /* Invoca el generador de reportes y termina la simulacion. */
 
-    reportes(resultados_resumen, total_de_esperas, area_num_entra_cola, tiempo_simulacion, area_estado_servidor, num_clientes_espera, num_eventos_realizados, num_eventos_con_cola);
+    reportes(resultados_resumen, total_de_esperas, area_num_entra_cola, tiempo_simulacion, area_estado_servidor, num_clientes_espera, num_eventos_realizados, num_eventos_con_cola, num_servidores);
 
     fclose(resultados);
     fclose(resultados_resumen);

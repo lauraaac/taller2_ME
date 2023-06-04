@@ -14,7 +14,8 @@ void reportes(
         float & area_estado_servidor,
         int & num_clientes_espera,
         int & num_eventos_realizados, 
-        int & num_eventos_con_cola
+        int & num_eventos_con_cola,
+        int & num_servidores
         );
 
 #endif
