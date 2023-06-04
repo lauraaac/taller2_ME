@@ -12,7 +12,9 @@ void reportes(
         float & area_num_entra_cola,
         float & tiempo_simulacion,
         float & area_estado_servidor,
-        int & num_clientes_espera
+        int & num_clientes_espera,
+        int & num_eventos_realizados, 
+        int & num_eventos_con_cola
         );
 
 #endif

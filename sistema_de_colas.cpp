@@ -21,7 +21,9 @@ int sig_tipo_evento,
     num_eventos,
     num_entra_cola,
     estado_servidor, /* Este es ahora el numero de servidores ocupados */
-    num_servidores;
+    num_servidores,
+    num_eventos_realizados,
+    num_eventos_con_cola;
 
 float area_num_entra_cola,
     area_estado_servidor,
@@ -69,7 +71,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
 
     /* iInicializa la simulacion. */
 
-    inicializar(tiempo_simulacion, estado_servidor, num_entra_cola, tiempo_ultimo_evento, num_clientes_espera, total_de_esperas, area_num_entra_cola, area_estado_servidor, tiempo_sig_evento, media_entre_llegadas);
+    inicializar(tiempo_simulacion, estado_servidor, num_entra_cola, tiempo_ultimo_evento, num_clientes_espera, total_de_esperas, area_num_entra_cola, area_estado_servidor, tiempo_sig_evento, media_entre_llegadas, num_eventos_realizados, num_eventos_con_cola);
 
     /* Corre la simulacion mientras no se llegue al numero de clientes especificaco en el archivo de entrada*/
 
@@ -83,7 +85,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
 
         /* Actualiza los acumuladores estadisticos de tiempo promedio */
 
-        actualizar_estad_prom_tiempo(tiempo_simulacion, tiempo_ultimo_evento, area_num_entra_cola, num_entra_cola, area_estado_servidor, estado_servidor);
+        actualizar_estad_prom_tiempo(tiempo_simulacion, tiempo_ultimo_evento, area_num_entra_cola, num_entra_cola, area_estado_servidor, estado_servidor, num_eventos_realizados, num_eventos_con_cola);
 
         /* Invoca la funcion del evento adecuado. */
 
@@ -100,7 +102,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
 
     /* Invoca el generador de reportes y termina la simulacion. */
 
-    reportes(resultados_resumen, total_de_esperas, area_num_entra_cola, tiempo_simulacion, area_estado_servidor, num_clientes_espera);
+    reportes(resultados_resumen, total_de_esperas, area_num_entra_cola, tiempo_simulacion, area_estado_servidor, num_clientes_espera, num_eventos_realizados, num_eventos_con_cola);
 
     fclose(resultados);
     fclose(resultados_resumen);

@@ -6,9 +6,17 @@ void actualizar_estad_prom_tiempo(
     float & area_num_entra_cola, 
     int & num_entra_cola, 
     float & area_estado_servidor, 
-    int & estado_servidor)  /* Actualiza los acumuladores de area para las estadisticas de tiempo promedio. */
+    int & estado_servidor,
+    int & num_eventos_realizados,
+    int & num_eventos_con_cola)  /* Actualiza los acumuladores de area para las estadisticas de tiempo promedio. */
 {
     float time_since_last_event;
+
+    num_eventos_realizados++;
+    if (num_entra_cola > 0)
+    {
+        num_eventos_con_cola++;
+    }  
 
     /* Calcula el tiempo desde el ultimo evento, y actualiza el marcador
     	del ultimo evento */

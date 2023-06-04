@@ -11,8 +11,14 @@ void inicializar(
     float & area_num_entra_cola,
     float & area_estado_servidor,
     float * tiempo_sig_evento,
-    float & media_entre_llegadas)  /* Funcion de inicializacion. */
+    float & media_entre_llegadas,
+    int & num_eventos_realizados, 
+    int & num_eventos_con_cola)  /* Funcion de inicializacion. */
 {
+    /* inicializa valores para calcular promedios de veces que el sistema tuvo cola*/
+    num_eventos_realizados = 0;
+    num_eventos_con_cola = 0;
+
     /* Inicializa el reloj de la simulacion. */
 
     tiempo_simulacion = 0.0;

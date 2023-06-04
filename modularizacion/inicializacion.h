@@ -13,6 +13,8 @@ void inicializar(
     float & area_num_entra_cola,
     float & area_estado_servidor,
     float * tiempo_sig_evento,
-    float & media_entre_llegadas);
+    float & media_entre_llegadas,
+    int & num_eventos_realizados, 
+    int & num_eventos_con_cola);
 
 #endif 
