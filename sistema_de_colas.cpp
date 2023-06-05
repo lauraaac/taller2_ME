@@ -94,7 +94,7 @@ int main(int argc, char* argv[])  /* Funcion Principal */
                 llegada(tiempo_sig_evento, tiempo_simulacion, media_entre_llegadas, estado_servidor, num_servidores, num_entra_cola, resultados_resumen, tiempo_llegada, total_de_esperas, num_clientes_espera, media_atencion);
                 break;
             case 2:
-                salida(tiempo_sig_evento, tiempo_simulacion, media_atencion, num_entra_cola, num_clientes_espera, total_de_esperas, estado_servidor, tiempo_llegada);
+                salida(tiempo_sig_evento, tiempo_simulacion, media_atencion, num_entra_cola, num_clientes_espera, total_de_esperas, estado_servidor, tiempo_llegada, num_servidores);
                 break;
         }
 

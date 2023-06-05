@@ -3,7 +3,7 @@
 #ifndef SISTEMA_COLAS_ERLANG_H
 #define SISTEMA_COLAS_ERLANG_H
 
-#define LIMITE_COLA 100  /* Capacidad maxima de la cola */
+#define LIMITE_COLA 10000000  /* Capacidad maxima de la cola */
 #define OCUPADO      1    /* Indicador de Servidor Ocupado */
 #define LIBRE        0    /* Indicador de Servidor Libre */
 

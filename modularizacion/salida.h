@@ -13,7 +13,8 @@ void salida(
     int & num_clientes_espera,
     float & total_de_esperas,
     int & estado_servidor,
-    float * tiempo_llegada
+    float * tiempo_llegada,
+    int & num_servidores
 );  /* Funcion de Salida. */
 
 #endif
